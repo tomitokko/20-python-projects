@@ -1,0 +1,23 @@
+import requests
+from bs4 import BeautifulSoup
+
+print("PLEASE INSPECT YOUR PAGE TO FILLING QUESTION")
+while True:
+    #made user input for link, part, class and index
+#url = 'https://www.codewithtomi.com/'
+    url = input("Put Your Link Here: ")
+    trait = input('What Part You Wanna Know? ')
+    part = input('What class you wanna know? ')
+    index= int(input('What index you wanna know? '))
+    r = requests.get(url)
+
+    soup = BeautifulSoup(r.content, 'lxml')
+    title = soup.find_all(trait, {'class': part})
+    title1 = title[index].getText()
+    #for t in title:
+        #print(t.getText())
+    print(title1)
+    #made repeat function
+    input1 = input("Still wanna webscrapping?(y/n) ")
+    if input1 == 'N' or input1 == 'n':
+        quit()
